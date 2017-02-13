@@ -1,0 +1,58 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+
+PS1='\[\e[0;32m\]\u\[\e[m\]\[\e[1;34m\]\w\[\e[m\]\[\e[1;32m\] $?\$ \[\e[m\]\[\e[1;37m\]'
+#PS1='[\u@\h \W]$?\$ '
+
+# Eiffel IDE config lines
+export ISE_EIFFEL=$HOME/Eiffel_15.12
+export ISE_PLATFORM=linux-86-64
+export PATH=$PATH:$ISE_EIFFEL/studio/spec/$ISE_PLATFORM/bin
+
+# set the TERM variable to a color-enabled type (xterm-color)
+export TERM="xterm-color"
+export VISUAL="vim"
+export PATH=/opt/sparc-unknown-linux-gnu/bin:$PATH
+export KSRC=~/linux/src
+export ROOTFS=/home/ferryk/linux_rootfs
+export KBUILD_OUTPUT=~/linux/build
+eval $(dircolors /home/ferryk/.dircolors)
+
+# FUNCTIONS
+
+start_vm() {
+
+  sudo libvirtd -d &&  \
+  sudo systemctl start nfs-server &&  \
+  sudo systemctl start virtlogd.socket && \
+  sudo virsh start $1 && \
+  sudo virsh console $1
+}
+
+
+
+# ALIASES
+alias gist='git status'
+alias findfile='find . -name'
+alias exact_grep='grep -Ir'
+alias emax='emacs -nw'
+alias gpllr='git pull --rebase'
+alias gpsh='git push'
+alias gitree='git log --pretty=format:"%h %s" --graph'
+alias gcc='clear && gcc'
+alias g++='clear && g++'
+alias make='clear && make'
+alias l='ls -la --color=always'
+alias alt_lock="$HOME/./.alt_lock.sh"
+alias create_repo="$HOME/./.create_repo.sh"
+alias lock='i3lock --image=/home/ferryk/.lock/deus.png'
+alias stop-cancer='mysqladmin -uroot -h127.0.0.1 shutdown'
+alias kill-me='killall -u ferryk'
+
+
+#PS1='[\u@\h \W]\$ '
