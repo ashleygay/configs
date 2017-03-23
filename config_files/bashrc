@@ -21,7 +21,7 @@ export PATH=/opt/sparc-unknown-linux-gnu/bin:$PATH
 export KSRC=~/linux/src
 export ROOTFS=/home/ferryk/linux_rootfs
 export KBUILD_OUTPUT=~/linux/build
-eval $(dircolors /home/ferryk/.dircolors)
+eval $(dircolors ~/.dircolors)
 
 # FUNCTIONS
 
