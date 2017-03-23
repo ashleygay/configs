@@ -10,6 +10,6 @@ match error "\s$"
 nnoremap <C-h> :tabprevious<CR>
 nnoremap <C-l> :tabnext<CR>
 
-" Moving tabs TODO: fix
-"nnoremap <C-S-l> :tabm +1<CR>
-"nnoremap <C-S-h> :tabm -1<CR>
+" Moving tabs 
+nnoremap <C-k> :tabm +1<CR>
+nnoremap <C-j> :tabm -1<CR>
