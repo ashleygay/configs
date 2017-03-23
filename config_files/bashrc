@@ -27,17 +27,17 @@ eval $(dircolors /home/ferryk/.dircolors)
 
 start_vm() {
 
-  sudo libvirtd -d &&  \
+  LIBVIRT_DEBUG=1 sudo libvirtd -d &&  \
   sudo systemctl start nfs-server &&  \
   sudo systemctl start virtlogd.socket && \
-  sudo virsh start $1 && \
-  sudo virsh console $1
+  sudo virt-manager
 }
 
 
 
 # ALIASES
 alias gist='git status'
+alias gibr='git branch -vv'
 alias findfile='find . -name'
 alias exact_grep='grep -Ir'
 alias emax='emacs -nw'
@@ -53,6 +53,7 @@ alias create_repo="$HOME/./.create_repo.sh"
 alias lock='i3lock --image=/home/ferryk/.lock/deus.png'
 alias stop-cancer='mysqladmin -uroot -h127.0.0.1 shutdown'
 alias kill-me='killall -u ferryk'
+alias v='vim'
 
 
 #PS1='[\u@\h \W]\$ '

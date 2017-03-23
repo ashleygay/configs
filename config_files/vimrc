@@ -6,24 +6,9 @@ set mouse=n
 syntax on
 match error "\s$"
 
-
-"required for ycm
-filetype off
-" Plugins
-
-set rtp+=~/.vim/bundle/Vundle.vim
-
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'Valloric/YouCompleteMe'
-" All plugins must be put between bein and end
-let g:ycm_server_python_interpreter = '/usr/bin/python2'
-let g:ycm_global_ycm_extra_conf = '~/.my_ycm_conf'
-let g:ycm_confirm_extra_conf = 0
-
-call vundle#end()
-filetype plugin on
-
 " Tab navigation
 nnoremap <C-h> :tabprevious<CR>
 nnoremap <C-l> :tabnext<CR>
+" Moving tabs
+nnoremap <C-S-l> :tabm +1<CR>
+nnoremap <C-S-h> :tabm -1<CR>
