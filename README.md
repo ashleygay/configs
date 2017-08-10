@@ -10,5 +10,4 @@ Also includes linux kernel configuration.
 * mutt  
 * xinitrc  
 # Current kernel configurations #
-Kernel configuration:  
 * x86_64 with virtio enabled  
