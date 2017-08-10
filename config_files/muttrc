@@ -1,0 +1,6 @@
+set my_name = "Corentin Gay"
+set editor = "vim"
+set imap_user = corentin.gay060@gmail.com
+set folder = imaps://corentin.gay060@imap.gmail.com/
+set spoolfile =+INBOX
+set imap_check_subscribed
