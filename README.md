@@ -4,12 +4,11 @@ Also includes linux kernel configuration.
 
 
 # Current configuration files #
-Currently configuration for :  
 * vim  
 * bash (TODO : adding bash_it directory)  
 * xinit  
 * mutt  
 * xinitrc  
-# Current kernelconfigurations #
+# Current kernel configurations #
 Kernel configuration:  
 * x86_64 with virtio enabled  
