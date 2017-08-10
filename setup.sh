@@ -1,6 +1,6 @@
 #!/bin/sh
 
-FILES=(vimrc bashrc muttrc dircolors xinitrc)
+FILES=(vimrc bashrc muttrc dircolors xinitrc bash_profile)
 
 CURR_FILE=lol
 

@@ -6,6 +6,7 @@ Also includes linux kernel configuration.
 # Current configuration files #
 * vim  
 * bash (TODO : adding bash_it directory)  
+* bash_profile (auto starting X at login)  
 * xinit  
 * mutt  
 * xinitrc  
