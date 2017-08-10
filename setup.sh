@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #TODO add xinitrc in there
-FILES=(vimrc bashrc muttrc dircolors)
+FILES=(vimrc bashrc muttrc dircolors xinitrc)
 
 CURR_FILE=lol
 
