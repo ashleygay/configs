@@ -37,9 +37,64 @@ export __OLD__KBUILD_OUTPUT=~/linux/build
 export ARCH_ROOTFS=/home/ferryk/archlinux_rootfs
 export LAVA_ROOTFS=/home/ferryk/debian_rootfs
 
+export SAND_KEY=id_rsa_sand
+export GITHUB_KEY=id_rsa_github
+
 eval $(dircolors ~/.dircolors)
 
 # FUNCTIONS
+
+#TODO: will generate code to automatically set vars to their arguments value
+set_args() {
+	echo "TODO"
+}
+
+parse_options_test () {
+	DEVICE="invalid"
+	MOUNT_POINT=~/Public
+	FILES_DIR=~/Music/*
+	USAGE="TEST HERE"
+#TODO: maybe switch to getopt in the future
+while getopts ':hd:m:f:' option; do
+	case "$option" in
+	d) DEVICE=${OPTARG}
+# if device = invalid return here
+#	   if ["$DEVICE" == "invalid"]; then
+#		echo $USAGE
+#		return 1
+#	   fi
+	   ;;
+	m) MOUNT_POINT=${OPTARG}
+	   ;;
+	f) FILES_DIR=${OPTARG}
+	   ;;
+	h) echo $USAGE
+	   return 0
+	   ;;
+	:) echo Bad options
+	   return 1
+	   ;;
+	\?) echo "$FUNCNAME : Illegal options"
+	    return 1
+	   ;;
+	esac
+shift $((OPTIND-1))
+done
+#shift $((OPTIND-1))
+
+# if device = invalid return here
+
+echo "Will sync device : $DEVICE (mountpoint : $MOUNT_POINT) with directory : $FILES_DIR"
+
+read -r -p "Do you want to proceed ? [y/n]" response
+response=${response,,} #lowercase
+if [[ $response =~ ^(yes|y) ]] || [[ -z $response ]]; then
+	#sudo mount $DEVICE $MOUNT_POINT
+	#sudo cp -r $FILES_DIR $MOUNT_POINT
+	#sudo umount $DEVICE
+	echo 'Syncing done !'
+fi
+}
 
 start_vm() {
 
@@ -52,8 +107,13 @@ adjust_screen() {
 	xrandr --output HDMI1 --$1-of eDP1 --mode 1920x1080
 }
 
-greph() {
+grepv() {
 	grep -Irn $1 . | vim -R -
+}
+
+vp() {
+	FILES=`find . -name $1`
+	vim -p $FILES
 }
 
 lock() {
@@ -94,9 +154,26 @@ v() {
 	vim -p $@
 }
 
+tar_stuff() {
+	FILE=${1%/}
+	if [ $FILE = "." ]; then
+		FILE="root"
+	fi
+	tar -czf $FILE.tar.gz $1
+
+}
+
+git_fetch_all_remote_branches() {
+	for b in `git branch -r | grep -v -- '->'`; do git branch --track ${b##origin/} $b; done
+	git fetch --all
+}
+
+gcom() {
+	git commit -s -m "$1"
+}
+
 # ALIASES
 alias update='sudo pacman -Syu'
-alias update_aur='yaourt -Syu'
 alias lines='wc -l'
 alias rm='rm -ri'
 alias wifi='sudo wifi-menu'
@@ -121,6 +198,7 @@ alias kill-me='killall -u ferryk'
 #alias quartus='./${QUARTUS_INSTALL_PATH}/quartus/quartus/bin/quartus'
 alias shutdown='sudo netctl stop-all && sudo shutdown now'
 alias reboot='sudo netctl stop-all && sudo reboot'
+alias clean_dir='rm -rf * && rm -rf .*'
 
 #BINDS
 bind 'set mark-symlinked-directories on'
