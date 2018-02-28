@@ -1,4 +1,7 @@
-#!/bin/sh
+#!/bin/bash
+
+#TODO add a way to specify packages to install
+
 
 FILES=(vimrc bashrc muttrc dircolors xinitrc bash_profile gitconfig)
 
