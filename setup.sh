@@ -1,14 +1,11 @@
 #!/bin/bash
 
-#TODO add a way to specify packages to install
+search_dir=`find ./config_files/ -maxdepth 1`
 
+arr=(./config_files/.*)
 
-FILES=(vimrc bashrc muttrc dircolors xinitrc bash_profile gitconfig)
-
-CURR_FILE=lol
-
-for i in ${!FILES[@]}; do
-	CURR_FILE=${FILES[i]}
-	ln -i ./config_files/$CURR_FILE $HOME/.$CURR_FILE
+for ((i=0; i<${#arr[@]}; i++)); do
+    mod="$HOME/${arr[$i]#*/*/}"
+    echo $mod
+    ln -s ${arr[$i]} ~/$mod
 done
-
